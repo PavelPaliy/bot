@@ -32,7 +32,7 @@ class BotController extends Controller
         }
         else{
             
-            var_dump();
+           echo \count(Chat::where('chat_id', 388378957)->get());
 
         }
     }
