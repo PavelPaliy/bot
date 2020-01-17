@@ -29,6 +29,16 @@ class BotController extends Controller
                 }
                 $bot->send_message($chat_id, $text, $url."sendMessage");
             }
+            else if(preg_match('^\/watch', $message))
+            {
+                $text = '';
+                $arr = explode(" ", $message);
+                if (count($arr) == 3){
+                    $text = "Тредики";
+                    $bot->send_message($chat_id, $text, $url."sendMessage");
+
+                }
+            }
         }
         else{
             
