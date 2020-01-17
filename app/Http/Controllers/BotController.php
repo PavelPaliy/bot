@@ -12,7 +12,7 @@ use App\Library\Services\Bot;
 class BotController extends Controller
 {
     //
-    public function index(Request $request, Bot $bot){
+    public function index(Request $request){
     	$url = "https://api.telegram.org/bot831592934:AAEz6KykUmMg0i8q0HNJ_DwhILCDcnJfMCQ/";
         $method = $request->method();
         if ($request->isMethod('post')) {
