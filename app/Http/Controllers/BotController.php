@@ -47,9 +47,23 @@ class BotController extends Controller
         }
         else{
             $link = 'https://2ch.hk/b/catalog_num.json';
-           $curl = new Curl();
+           /*$curl = new Curl();
            $curl->get($link);
-           var_dump($curl->responce);
+           var_dump($curl->responce);*/
+           // 1. инициализация
+           $ch = curl_init();
+            
+           // 2. устанавливаем опции, включая урл
+           curl_setopt($ch, CURLOPT_URL, $link);
+           curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+           curl_setopt($ch, CURLOPT_HEADER, 0);
+            
+           // 3. выполнение запроса и получение ответа
+           $output = curl_exec($ch);
+            
+           // 4. очистка ресурсов
+           curl_close($ch);
+           var_dump($output);
 
         }
     }
