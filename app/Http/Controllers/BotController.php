@@ -21,7 +21,7 @@ class BotController extends Controller
             if($message == "/start")
             {
                 $text = "Тут будет описание работы бота";
-                $bot->send_message($chat_id, $text, $url."sendMessage");
+                //$bot->send_message($chat_id, $text, $url."sendMessage");
             }
         }
         else{
