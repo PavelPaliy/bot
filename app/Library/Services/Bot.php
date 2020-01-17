@@ -13,7 +13,7 @@ class Bot
           'chat_id':$chat_id, 'text':$text
       ));
     }*/
-    public function huy(){
+    public function huy($a){
     	return "huy";
     }
 }

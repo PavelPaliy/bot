@@ -25,7 +25,7 @@ class BotController extends Controller
             }
         }
         else{
-            echo $bot->huy();
+            echo $bot->huy(2);
         }
     }
 }
