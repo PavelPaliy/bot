@@ -52,11 +52,11 @@ class BotController extends Controller
                                    foreach ($tags as $key => $tag) {
                                        if(preg_match('/'.$tag.'/i', $threads[$i]['comment']))
                                        {
-                                           $text .= 'https://2ch.hk/'.$board.'/res/'.explode('/', $threads[$i]['files'][0]['path'])[3].'.html\n';
+                                           $text .= 'https://2ch.hk/'.$board.'/res/'.explode('/', $threads[$i]['files'][0]['path'])[3].'.html'.PHP_EOL;
                                        }
                                    }
                                }
-                    $bot->send_message($chat_id, urlencode($text), $url."sendMessage");
+                    $bot->send_message($chat_id, $text, $url."sendMessage");
                 }
             }
         }
