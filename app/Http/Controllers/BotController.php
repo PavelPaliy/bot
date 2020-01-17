@@ -14,18 +14,18 @@ class BotController extends Controller
     //
     public function index(Request $request, Bot $bot){
     	$url = "https://api.telegram.org/bot831592934:AAEz6KykUmMg0i8q0HNJ_DwhILCDcnJfMCQ/";
-        $method = $request->method();
+       
         if ($request->isMethod('post')) {
             $chat_id = $request->input('message.chat.id');
             $message = $request->input("message.text");
             if($message == "/start")
             {
                 $text = "Тут будет описание работы бота";
+                echo $text;
                 $bot->send_message($chat_id, $text, $url."sendMessage");
             }
         }
         else{
-            $bot->send_message(388378957, 'huy', $url."sendMessage");
             echo $bot->huy(2);
 
         }
