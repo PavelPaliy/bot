@@ -24,8 +24,6 @@ class BotController extends Controller
                 $bot->send_message($chat_id, $text, $url+"sendMessage");
             }
         }*/
-        else{
-            echo $bot->send_message();
-        }
+        echo $bot->send_message();
     }
 }
