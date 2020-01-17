@@ -62,7 +62,16 @@ class BotController extends Controller
             }
         }
         else{
-           echo "omega";
+           $link = 'https://2ch.hk/b/catalog_num.json';
+           $ch = curl_init();
+           curl_setopt($ch, CURLOPT_URL, $link);
+           curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+           curl_setopt($ch, CURLOPT_HEADER, 0);
+           $output = curl_exec($ch);
+           curl_close($ch);
+           $board_json = json_decode($output, true);
+           $threads = $board_json['threads'];
+           var_dump($threads);
 
         }
     }
