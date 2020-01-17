@@ -35,7 +35,6 @@ class BotController extends Controller
                 $text = '';
                 $arr = explode(" ", $message);
                 if (count($arr) == 3){
-                    $text = "Тредики";
                     $board = $arr[1];
                     $tags = explode(";", $arr[2]);
                     $link = 'https://2ch.hk/'.$board.'/catalog_num.json';
@@ -53,7 +52,7 @@ class BotController extends Controller
                                    foreach ($tags as $key => $tag) {
                                        if(preg_match('/'.$tag.'/i', $threads[$i]['comment']))
                                        {
-                                           $text .= 'https://2ch.hk/'.$board.'/res/'.explode('/', $threads[$i]['files'][0]['path'])[3].'.html\n';
+                                           $text .= 'https://2ch.hk/'.$board.'/res/'.explode('/', $threads[$i]['files'][0]['path'])[3].'.html\r\n';
                                        }
                                    }
                                }
