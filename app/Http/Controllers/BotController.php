@@ -13,7 +13,7 @@ class BotController extends Controller
 {
     //
     public function index(Request $request, Bot $bot){
-    	$url = "https://api.telegram.org/bot831592934:AAEz6KykUmMg0i8q0HNJ_DwhILCDcnJfMCQ/"
+    	$url = "https://api.telegram.org/bot831592934:AAEz6KykUmMg0i8q0HNJ_DwhILCDcnJfMCQ/";
         $method = $request->method();
         if ($request->isMethod('post')) {
             $chat_id = $request->input('message.chat.id');
