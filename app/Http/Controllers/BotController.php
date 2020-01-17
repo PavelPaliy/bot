@@ -45,7 +45,7 @@ class BotController extends Controller
                     curl_setopt($ch, CURLOPT_HEADER, 0);
                     $output = curl_exec($ch);
                     curl_close($ch);
-                    $board_json = json_decode($output);
+                    $board_json = json_decode($output, true);
                     $threads = $board_json['threads'];
 
                     for($i = 0; $i < count($threads); $i++)
