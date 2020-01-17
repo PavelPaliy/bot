@@ -46,7 +46,7 @@ class BotController extends Controller
             }
         }
         else{
-            $link = 'https://2ch.hk/'+$board+'/catalog_num.json';
+            $link = 'https://2ch.hk/'+'b'+'/catalog_num.json';
            $curl = new Curl();
            $curl->get($link);
            echo $curl->responce;
