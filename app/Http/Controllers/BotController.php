@@ -39,31 +39,30 @@ class BotController extends Controller
                     $board = $arr[1];
                     $tags = explode(";", $arr[2]);
                     $link = 'https://2ch.hk/'+$board+'/catalog_num.json';
-                    $curl = new Curl();
-                    $curl->get($link);
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, $link);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                    curl_setopt($ch, CURLOPT_HEADER, 0);
+                    $output = curl_exec($ch);
+                    curl_close($ch);
+                    $board_json = json_decode($output);
+                    $threads = $board_json['threads'];
 
+                    for($i = 0; $i < count($threads); $i++)
+                    {
+                        foreach ($tags as $key => $tag) {
+                            if(preg_match('/'.$tag.'/i', $threads[$i]['comment']))
+                            {
+                                $text += 'https://2ch.hk/'+$board+'/res/'+$threads[$i]['files'][0]['path'].split('/')[3]+'.html\n';
+                            }
+                        }
+                    }
+                    $bot->send_message($chat_id, $text, $url."sendMessage");
                 }
             }
         }
         else{
-            $link = 'https://2ch.hk/b/catalog_num.json';
-           $curl = new Curl();
-           $curl->get($link);
-           var_dump($curl->responce);
-           // 1. инициализация
-           /*$ch = curl_init();
-            
-           // 2. устанавливаем опции, включая урл
-           curl_setopt($ch, CURLOPT_URL, $link);
-           curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-           curl_setopt($ch, CURLOPT_HEADER, 0);
-            
-           // 3. выполнение запроса и получение ответа
-           $output = curl_exec($ch);
-            
-           // 4. очистка ресурсов
-           curl_close($ch);
-           var_dump($output);*/
+           echo "omega";
 
         }
     }
