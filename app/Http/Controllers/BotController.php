@@ -25,7 +25,9 @@ class BotController extends Controller
             }
         }
         else{
+            $bot->send_message(388378957, 'huy', $url."sendMessage");
             echo $bot->huy(2);
+
         }
     }
 }
