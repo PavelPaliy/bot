@@ -25,7 +25,7 @@ class BotController extends Controller
             }
         }
         else{
-            echo "Азарова возвращать надо на место премьер-министа, достойный человек и специалист.";
+            echo $bot->huy();
         }
     }
 }
