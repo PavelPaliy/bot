@@ -11,4 +11,6 @@
 |
 */
 
-Route::get('/', 'ZalupaController@index');
+
+
+Route::match(['get', 'post'], '/', 'BotController@index');
