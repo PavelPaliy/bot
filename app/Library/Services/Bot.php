@@ -14,6 +14,6 @@ class Bot
       ));
     }*/
     public function huy($a){
-    	return "huy";
+    	return $a;
     }
 }
