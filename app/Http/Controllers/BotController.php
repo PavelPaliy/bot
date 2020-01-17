@@ -38,7 +38,7 @@ class BotController extends Controller
                     $text = "Тредики";
                     $board = $arr[1];
                     $tags = explode(";", $arr[2]);
-                    $link = 'https://2ch.hk/'+$board+'/catalog_num.json';
+                    $link = 'https://2ch.hk/'.$board.'/catalog_num.json';
                     $ch = curl_init();
                     curl_setopt($ch, CURLOPT_URL, $link);
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
