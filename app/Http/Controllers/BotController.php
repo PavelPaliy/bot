@@ -49,41 +49,21 @@ class BotController extends Controller
                     $threads = $board_json['threads'];
 
                     for($i = 0; $i < count($threads); $i++)
-                    {
-                        foreach ($tags as $key => $tag) {
-                            if(preg_match('/'.$tag.'/i', $threads[$i]['comment']))
-                            {
-                                $text += 'https://2ch.hk/'+$board+'/res/'+$threads[$i]['files'][0]['path'].split('/')[3]+'.html\n';
-                            }
-                        }
-                    }
+                               {
+                                   foreach ($tags as $key => $tag) {
+                                       if(preg_match('/'.$tag.'/i', $threads[$i]['comment']))
+                                       {
+                                           $text .= 'https://2ch.hk/'.$board.'/res/'.explode('/', $threads[$i]['files'][0]['path'])[3].'.html\n';
+                                       }
+                                   }
+                               }
                     $bot->send_message($chat_id, $text, $url."sendMessage");
                 }
             }
         }
         else{
-           $link = 'https://2ch.hk/b/catalog_num.json';
-           $ch = curl_init();
-           curl_setopt($ch, CURLOPT_URL, $link);
-           curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-           curl_setopt($ch, CURLOPT_HEADER, 0);
-           $output = curl_exec($ch);
-           curl_close($ch);
-           $board_json = json_decode($output, true);
-           $threads = $board_json['threads'];
-           $board = 'b';
-           $tags = explode(";", 'webm');
-           $text = '';
-           for($i = 0; $i < count($threads); $i++)
-           {
-               foreach ($tags as $key => $tag) {
-                   if(preg_match('/'.$tag.'/i', $threads[$i]['comment']))
-                   {
-                       $text .= 'https://2ch.hk/'.$board.'/res/'.explode('/', $threads[$i]['files'][0]['path'])[3].'.html\n';
-                   }
-               }
-           }
-           echo $text;
+           
+           echo 'govno';
 
         }
     }
