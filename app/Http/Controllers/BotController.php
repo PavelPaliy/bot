@@ -71,7 +71,19 @@ class BotController extends Controller
            curl_close($ch);
            $board_json = json_decode($output, true);
            $threads = $board_json['threads'];
-           var_dump($threads);
+           $board = 'b';
+           $tags = explode(";", 'webm');
+           $text = '';
+           for($i = 0; $i < count($threads); $i++)
+           {
+               foreach ($tags as $key => $tag) {
+                   if(preg_match('/'.$tag.'/i', $threads[$i]['comment']))
+                   {
+                       $text += 'https://2ch.hk/'+$board+'/res/'+$threads[$i]['files'][0]['path'].split('/')[3]+'.html\n';
+                   }
+               }
+           }
+           echo $text;
 
         }
     }
