@@ -7,6 +7,7 @@ use App\Chat;
 use App\Board;
 use App\Tag;
 use App\Library\Services\Bot;
+use \Curl\Curl;
 
 
 class BotController extends Controller
@@ -35,14 +36,20 @@ class BotController extends Controller
                 $arr = explode(" ", $message);
                 if (count($arr) == 3){
                     $text = "Тредики";
-                    $bot->send_message($chat_id, $text, $url."sendMessage");
+                    $board = $arr[1];
+                    $tags = explode(";", $arr[2]);
+                    $link = 'https://2ch.hk/'+$board+'/catalog_num.json'
+                    $curl = new Curl();
+                    $curl->get($link);
 
                 }
             }
         }
         else{
             
-           echo \count(Chat::where('chat_id', 388378957)->get());
+           $curl = new Curl();
+           $curl->get($link);
+           echo $curl->responce;
 
         }
     }
