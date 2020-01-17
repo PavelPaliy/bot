@@ -21,13 +21,16 @@ class BotController extends Controller
             if($message == "/start")
             {
                 $text = "Тут будет описание работы бота";
+                /*$chat = new Chat();
+                $chat->chat_id = $chat_id;
+                $chat->save();*/
                 $chat = Chat::firstOrNew(["chat_id" => $chat_id]);
                 $bot->send_message($chat_id, $text, $url."sendMessage");
             }
         }
         else{
             
-            echo $bot->huy(2);
+            var_dump(Chat::where('chat_id', 388378957)->get());
 
         }
     }
