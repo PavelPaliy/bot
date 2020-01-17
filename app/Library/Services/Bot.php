@@ -1,10 +1,16 @@
 <?php
 namespace App\Library\Services;
-  
+ 
+use \Curl\Curl;
+
+
 class Bot
 {
-    public function doSomethingUseful()
+    public function send_message(chat_id, text, url)
     {
-      return 'Output from DemoOne';
+      $curl = new Curl();
+      $curl->post($url, array(
+          'chat_id':$chat_id, 'text':$text
+      ));
     }
 }

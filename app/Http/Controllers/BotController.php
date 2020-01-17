@@ -13,12 +13,19 @@ class BotController extends Controller
 {
     //
     public function index(Request $request, Bot $bot){
-    	$method = $request->method();
+    	$url = "https://api.telegram.org/bot831592934:AAEz6KykUmMg0i8q0HNJ_DwhILCDcnJfMCQ/"
+        $method = $request->method();
         if ($request->isMethod('post')) {
-            
+            $chat_id = $request->input('message.chat.id');
+            $message = $request->input("message.text");
+            if($message == "/start")
+            {
+                $text = "Тут будет описание работы бота";
+                $bot->send_message($chat_id, $text, $url+"sendMessage");
+            }
         }
         else{
-            echo $bot->doSomethingUseful();
+            echo "Азарова возвращать надо на место премьер-министа, достойный человек и специалист.";
         }
     }
 }
