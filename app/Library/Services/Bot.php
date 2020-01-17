@@ -9,6 +9,7 @@ class Bot
     public function send_message($chat_id, $text, $url)
     {
       $curl = new Curl();
+      $curl->get('https://natribu.org/ru/');
       /*$curl->post($url, array(
           'chat_id':$chat_id, 'text':$text
       ));*/
