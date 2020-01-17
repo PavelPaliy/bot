@@ -29,7 +29,7 @@ class BotController extends Controller
                 }
                 $bot->send_message($chat_id, $text, $url."sendMessage");
             }
-            else if(preg_match('^\/watch', $message))
+            else if(preg_match('/^\/watch/', $message))
             {
                 $text = '';
                 $arr = explode(" ", $message);
