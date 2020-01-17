@@ -30,7 +30,7 @@ class BotController extends Controller
         }
         else{
             
-            var_dump(Chat::where('chat_id', 388378957)->get());
+            var_dump(len(Chat::where('chat_id', 388378957)->get());
 
         }
     }
