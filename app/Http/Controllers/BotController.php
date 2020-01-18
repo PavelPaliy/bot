@@ -70,8 +70,8 @@ class BotController extends Controller
                                        
                                        if(preg_match('/'.$tag.'/i', $threads[$i]['comment']))
                                        {
-                                           $link = 'https://2ch.hk/'.$board.'/res/'.explode('/', $threads[$i]['files'][0]['path'])[3].'.html';
-                                           $text .= $link.PHP_EOL;
+                                           $text.= 'https://2ch.hk/'.$board.'/res/'.explode('/', $threads[$i]['files'][0]['path'])[3].'.html'.PHP_EOL;
+                                          
                                            /*if(!Link::where('name', $link)->get()){
                                                 $link_obj = new Link();
                                                 /*$link_obj->name = $link;
