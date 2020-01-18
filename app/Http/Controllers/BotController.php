@@ -56,17 +56,17 @@ class BotController extends Controller
                     for($i = 0; $i < count($threads); $i++)
                                {
                                    foreach ($tags as $key => $tag) {
-                                       if(\count(Tag::where('name', $tag)->where('chat_id', $chat_id)->where()->get())==0)
+                                       if(\count(Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->get())==0 || \count(Tag::where('name', $tag)->first()->board()->where('name', $board)->get() == 0))
                                        {
-
+                                            $tag_obj = new Tag();
+                                            $tag_obj->name = $tag;
+                                            $chat_obj = Chat::where('chat_id', $chat_id)->firstOrFail();
+                                            $board_obj = Board::where('name', $board)->firstOrFail();
+                                            $tag_obj->chat()->associate($chat_obj);
+                                            $tag_obj->board()->associate($board_obj);
+                                            $tag_obj->save();
                                        }
-                                       $tag_obj = new Tag();
-                                       $tag_obj->name = $tag;
-                                       $chat_obj = Chat::where('chat_id', $chat_id)->firstOrFail();
-                                       $board_obj = Board::where('name', $board)->firstOrFail();
-                                       $tag_obj->chat()->associate($chat_obj);
-                                       $tag_obj->board()->associate($board_obj);
-                                       $tag_obj->save();
+                                       
                                        if(preg_match('/'.$tag.'/i', $threads[$i]['comment']))
                                        {
                                            $text .= 'https://2ch.hk/'.$board.'/res/'.explode('/', $threads[$i]['files'][0]['path'])[3].'.html'.PHP_EOL;
