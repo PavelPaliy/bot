@@ -73,13 +73,13 @@ class BotController extends Controller
                                            $link = 'https://2ch.hk/'.$board.'/res/'.explode('/', $threads[$i]['files'][0]['path'])[3].'.html'.PHP_EOL;
                                            $text .= $link;
                                            if(count(Link::where('name', $link)->get())==0){
-                                                $link_obj = new Link();
+                                                /*$link_obj = new Link();
                                                 $link_obj->name = $link;
                                                 $tag_obj = Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->firstOrFail();
                                                 $link_obj->tags()->sync([
                                                     $tag_obj
                                                 ]);
-                                                $link_obj->save();
+                                                $link_obj->save();*/
 
                                            }
                                            else{
