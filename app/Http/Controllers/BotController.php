@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Chat;
 use App\Board;
 use App\Tag;
+use App\Link;
 use App\Library\Services\Bot;
 use \Curl\Curl;
 
@@ -69,7 +70,25 @@ class BotController extends Controller
                                        
                                        if(preg_match('/'.$tag.'/i', $threads[$i]['comment']))
                                        {
-                                           $text .= 'https://2ch.hk/'.$board.'/res/'.explode('/', $threads[$i]['files'][0]['path'])[3].'.html'.PHP_EOL;
+                                           $link = 'https://2ch.hk/'.$board.'/res/'.explode('/', $threads[$i]['files'][0]['path'])[3].'.html'.PHP_EOL;
+                                           $text .= $link;
+                                           if(count(Link::where('name', $link)->get())==0){
+                                                $link_obj = new Link();
+                                                $link_obj->name = $link;
+                                                $tag_obj = Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->firstOrFail();
+                                                $link_obj->tags()->sync([
+                                                    $tag_obj
+                                                ]);
+                                                $link_obj->save();
+
+                                           }
+                                           else{
+                                            $link_obj = Link::where('name', $link)->firstOrFail();
+                                            $link_obj->tags()->sync([
+                                                    $tag_obj
+                                                ]);
+
+                                           }
                                        }
                                    }
                                }
