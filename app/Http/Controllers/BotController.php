@@ -81,7 +81,7 @@ class BotController extends Controller
             $tag = "тян";
             $chat_id = 388378957;
             $board = 'b';
-           if(\count(Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->get())==0 || \count(Tag::where('name', $tag)->first()->board()->where('name', $board)->get() ) == 0 )
+           if(!Tag::where('name', $tag)->first() && (\count(Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->get())==0 || \count(Tag::where('name', $tag)->first()->board()->where('name', $board)->get()) ) == 0 )
            {
             echo "huy";
            }
