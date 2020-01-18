@@ -36,6 +36,12 @@ class BotController extends Controller
                 $arr = explode(" ", $message);
                 if (count($arr) == 3){
                     $board = $arr[1];
+                    if(\count(Board::where('name', $board)->get())==0)
+                    {
+                        $board_obj = new Board();
+                        $board_obj->name = $board;
+                        $board_obj->save();
+                    }
                     $tags = explode(";", $arr[2]);
                     $link = 'https://2ch.hk/'.$board.'/catalog_num.json';
                     $ch = curl_init();
@@ -46,10 +52,17 @@ class BotController extends Controller
                     curl_close($ch);
                     $board_json = json_decode($output, true);
                     $threads = $board_json['threads'];
-                    $chat = Chat::where('chat_id', $chat_id)->firstOrFail();
+                    
                     for($i = 0; $i < count($threads); $i++)
                                {
                                    foreach ($tags as $key => $tag) {
+                                       $tag_obj = new Tag();
+                                       $tag_obj->name = $tag;
+                                       $chat_obj = Chat::where('chat_id', $chat_id)->firstOrFail();
+                                       $board_obj = Board::where('name', $board)->firstOrFail();
+                                       $tag_obj->chat()->associate($chat_obj);
+                                       $tag_obj->board()->associate($board_obj);
+                                       $tag_obj->save();
                                        if(preg_match('/'.$tag.'/i', $threads[$i]['comment']))
                                        {
                                            $text .= 'https://2ch.hk/'.$board.'/res/'.explode('/', $threads[$i]['files'][0]['path'])[3].'.html'.PHP_EOL;
@@ -62,7 +75,7 @@ class BotController extends Controller
         }
         else{
            
-           var_dump(Chat::where('chat_id', 388378957 )->firstOrFail());
+           
 
         }
     }
