@@ -56,6 +56,10 @@ class BotController extends Controller
                     for($i = 0; $i < count($threads); $i++)
                                {
                                    foreach ($tags as $key => $tag) {
+                                       if(\count(Tag::where('name', $tag)->where('chat_id', $chat_id)->where()->get())==0)
+                                       {
+
+                                       }
                                        $tag_obj = new Tag();
                                        $tag_obj->name = $tag;
                                        $chat_obj = Chat::where('chat_id', $chat_id)->firstOrFail();
@@ -74,9 +78,10 @@ class BotController extends Controller
             }
         }
         else{
-           
-           
-
+            $tag = "webm";
+            $chat_id = 388378957;
+            $board = 'b';
+           echo \count(Tag::where('name', $tag)->chat()->where('chat_id', $chat_id)->get());
         }
     }
 }
