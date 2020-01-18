@@ -97,13 +97,17 @@ class BotController extends Controller
             }
         }
         else{
-            $tag = "тян";
-            $chat_id = 388378957;
             $board = 'b';
-           if(!Tag::where('name', $tag)->first() || \count(Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->get())==0 || \count(Tag::where('name', $tag)->first()->board()->where('name', $board)->get())  == 0 )
-           {
-            echo "huy";
-           }
+            $link = 'https://2ch.hk/'.$board.'/catalog_num.json';
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $link);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            $output = curl_exec($ch);
+            curl_close($ch);
+            $board_json = json_decode($output, true);
+            $threads = $board_json['threads'];
+            var_dump($threads);
         }
     }
 }
