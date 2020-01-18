@@ -16,4 +16,8 @@ class Tag extends Model
    {
      return $this->belongsTo(Board::class);
    }
+   public function links()
+   {
+     return $this->belongsToMany(Link::class);
+   }
 }
