@@ -62,7 +62,7 @@ class BotController extends Controller
         }
         else{
            
-           var_dump(Chat::where('chat_id', $chat_id)->firstOrFail());
+           var_dump(Chat::where('chat_id', 388378957 )->firstOrFail());
 
         }
     }
