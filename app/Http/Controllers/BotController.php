@@ -22,7 +22,7 @@ class BotController extends Controller
             if($message == "/start")
             {
                 $text = "Тут будет описание работы бота";
-                if(\count(Chat::where('chat_id', 388378957)->get())==0)
+                if(\count(Chat::where('chat_id', $chat_id)->get())==0)
                 {
                     $chat = new Chat();
                     $chat->chat_id = $chat_id;
@@ -46,7 +46,7 @@ class BotController extends Controller
                     curl_close($ch);
                     $board_json = json_decode($output, true);
                     $threads = $board_json['threads'];
-
+                    $chat = Chat::where('chat_id', $chat_id)->firstOrFail();
                     for($i = 0; $i < count($threads); $i++)
                                {
                                    foreach ($tags as $key => $tag) {
@@ -62,7 +62,7 @@ class BotController extends Controller
         }
         else{
            
-           echo 'govno';
+           var_dump(Chat::where('chat_id', $chat_id)->firstOrFail());
 
         }
     }
