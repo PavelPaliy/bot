@@ -74,12 +74,12 @@ class BotController extends Controller
                                            $text .= $link.PHP_EOL;
                                            if(!Link::where('name', $link)->get()){
                                                 $link_obj = new Link();
-                                                $link_obj->name = $link;
+                                                /*$link_obj->name = $link;
                                                 $tag_obj = Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->firstOrFail();
                                                 $link_obj->tags()->sync([
                                                     $tag_obj
                                                 ]);
-                                                $link_obj->save();
+                                                $link_obj->save();*/
 
                                            }
                                            else{
