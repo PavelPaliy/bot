@@ -86,10 +86,10 @@ class BotController extends Controller
                                            }
                                            else{
                                             $link_obj = Link::where('name', $link)->firstOrFail();
-                                            $tag_obj = Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->firstOrFail();
+                                            /*$tag_obj = Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->firstOrFail();
                                             $link_obj->tags()->sync([
                                                     $tag_obj
-                                                ]);
+                                                ]);*/
 
                                            }
                                        }
