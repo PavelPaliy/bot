@@ -33,6 +33,7 @@ class BotController extends Controller
             }
             else if(preg_match('/^\/watch/', $message))
             {
+                try{
                 $text = '';
                 $arr = explode(" ", $message);
                 if (count($arr) == 3){
@@ -72,9 +73,9 @@ class BotController extends Controller
                                        {
                                            $text.= 'https://2ch.hk/'.$board.'/res/'.explode('/', $threads[$i]['files'][0]['path'])[3].'.html'.PHP_EOL;
                                           
-                                           /*if(!Link::where('name', $link)->get()){
+                                           if(!Link::where('name', $link)->get()){
                                                 $link_obj = new Link();
-                                                /*$link_obj->name = $link;
+                                                $link_obj->name = $link;
                                                 $tag_obj = Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->firstOrFail();
                                                 $link_obj->tags()->sync([
                                                     $tag_obj
@@ -88,12 +89,15 @@ class BotController extends Controller
                                                     $tag_obj
                                                 ]);
 
-                                           }*/
+                                           }
                                        }
                                    }
                                }
                     $bot->send_message($chat_id, $text, $url."sendMessage");
                 }
+            }catch(\Exception $e){
+                $bot->send_message($chat_id, $e->getMessage(), $url."sendMessage");
+            }
             }
         }
         else{
