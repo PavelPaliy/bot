@@ -96,7 +96,7 @@ class BotController extends Controller
                     $bot->send_message($chat_id, $text, $url."sendMessage");
                 }
             }catch(\Exception $e){
-                $bot->send_message($chat_id, $e->getMessage(), $url."sendMessage");
+                $bot->send_message($chat_id, __LINE__.$e->getMessage(), $url."sendMessage");
             }
             }
         }
