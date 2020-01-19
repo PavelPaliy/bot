@@ -109,8 +109,9 @@ class BotController extends Controller
             $link_obj->name = $link;
            $link_obj->save();
             $tag = 'фап';
+            $chat_id = 388378957;
             //$tag_obj = Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->firstOrFail();
-            $tag_obj = Tag::where('name', $tag)->firstOrFail();
+            $tag_obj = Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->firstOrFail();
             echo $tag_obj->name;
             $link_obj->tags()->sync([
                 $tag_obj->id
