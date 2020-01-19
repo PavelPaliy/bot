@@ -104,17 +104,17 @@ class BotController extends Controller
             }
         }
         else{
-            $board = 'b';
-            $link = 'https://2ch.hk/'.$board.'/catalog_num.json';
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $link);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            $output = curl_exec($ch);
-            curl_close($ch);
-            $board_json = json_decode($output, true);
-            $threads = $board_json['threads'];
-            var_dump($threads);
+            $link_obj = new Link();
+             $link = 'https://2ch.hk/po/res/35704215.html';
+            $link_obj->name = $link;
+           
+            $tag = 'фап';
+            //$tag_obj = Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->firstOrFail();
+            $tag_obj = Tag::where('name', $tag)->firstOrFail();
+            $link_obj->tags()->sync([
+                $tag_obj
+            ]);
+            $link_obj->save();
         }
     }
 }
