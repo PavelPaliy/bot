@@ -107,15 +107,15 @@ class BotController extends Controller
             $link_obj = new Link();
              $link = 'https://2ch.hk/po/res/35704215.html';
             $link_obj->name = $link;
-           
+           $link_obj->save();
             $tag = 'фап';
             //$tag_obj = Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->firstOrFail();
             $tag_obj = Tag::where('name', $tag)->firstOrFail();
-            echo $tag_obj->id;
-            /*$link_obj->tags()->sync([
+            echo $tag_obj->name;
+            $link_obj->tags()->sync([
                 $tag_obj->id
             ]);
-            $link_obj->save();*/
+            
         }
     }
 }
