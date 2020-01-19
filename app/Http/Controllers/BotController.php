@@ -77,7 +77,7 @@ class BotController extends Controller
                                            if(\count(Link::where('name', $link)->get())==0){
                                                 $link_obj = new Link();
                                                 $link_obj->name = $link;
-                                                $tag_obj = Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->firstOrFail();
+                                                $tag_obj = Tag::where('name', $tag)->chat()->where('chat_id', $chat_id)->firstOrFail();
                                                 $bot->send_message($chat_id, gettype($tag_obj), $url."sendMessage");
                                                 /*$link_obj->tags()->sync([
                                                     $tag_obj
