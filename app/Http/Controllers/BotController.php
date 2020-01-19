@@ -58,7 +58,7 @@ class BotController extends Controller
                     for($i = 0; $i < count($threads); $i++)
                                {
                                    foreach ($tags as $key => $tag) {
-                                       /*if(!Tag::where('name', $tag)->first() || \count(Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->get())==0 || \count(Tag::where('name', $tag)->first()->board()->where('name', $board)->get())  == 0 )
+                                       if(!Tag::where('name', $tag)->first() || \count(Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->get())==0 || \count(Tag::where('name', $tag)->first()->board()->where('name', $board)->get())  == 0 )
                                        {
                                             $tag_obj = new Tag();
                                             $tag_obj->name = $tag;
@@ -67,7 +67,7 @@ class BotController extends Controller
                                             $tag_obj->chat()->associate($chat_obj);
                                             $tag_obj->board()->associate($board_obj);
                                             $tag_obj->save();
-                                       }*/
+                                       }
                                        
                                        if(preg_match('/'.$tag.'/i', $threads[$i]['comment']))
                                        {
@@ -75,12 +75,12 @@ class BotController extends Controller
                                           
                                            if(!Link::where('name', $link)->get()){
                                                 $link_obj = new Link();
-                                                /*$link_obj->name = $link;
+                                                $link_obj->name = $link;
                                                 $tag_obj = Tag::where('name', $tag)->first()->chat()->where('chat_id', $chat_id)->firstOrFail();
                                                 $link_obj->tags()->sync([
                                                     $tag_obj
                                                 ]);
-                                                $link_obj->save();*/
+                                                $link_obj->save();
 
                                            }
                                            else{
