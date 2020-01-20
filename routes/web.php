@@ -14,3 +14,4 @@
 
 
 Route::match(['get', 'post'], '/', 'BotController@index');
+Route::get('/huy', 'BotController@huy');
